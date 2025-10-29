@@ -179,15 +179,45 @@ Model complexity: Our 3-layer CNN is moderate, not extremely deep
 Final Learning Rate Justification:
 We used learning_rate = 0.001 because:
 
-✅ Well-established default for Adam optimizer
-✅ Appropriate for our dataset size and complexity
-✅ Showed stable convergence in our training curves
-✅ Supported by adaptive scheduling that automatically adjusts if needed
-✅ Balances convergence speed with training stability
+Well-established default for Adam optimizer
+Appropriate for our dataset size and complexity
+Showed stable convergence in our training curves
+Supported by adaptive scheduling that automatically adjusts if needed
+Balances convergence speed with training stability
 
 
+SGD:
+  Training Accuracy:   0.0531
+  Validation Accuracy: 0.0726
+  Training Loss:       nan
+  Validation Loss:     nan
+  Overfitting Gap:     -0.0196
+
+SGD+Momentum:
+  Training Accuracy:   0.0531
+  Validation Accuracy: 0.0726
+  Training Loss:       nan
+  Validation Loss:     nan
+  Overfitting Gap:     -0.0196
+
+Adam:
+  Training Accuracy:   0.2918
+  Validation Accuracy: 0.2421
+  Training Loss:       2.2507
+  Validation Loss:     2.7463
+  Overfitting Gap:     0.0497
 
 
+Question 10: Optimizer Comparison
 
+"The optimizer comparison revealed significant differences in performance:
+SGD and SGD+Momentum failed completely, achieving only 5.31% accuracy (essentially random guessing) and exhibiting NaN loss values indicating numerical instability due to exploding gradients.
+Adam optimizer performed substantially better, achieving 29.18% training accuracy and 24.21% validation accuracy with stable loss values.
+This demonstrates that Adam's adaptive learning rates are crucial for stable training of our CNN architecture on the Jute Pest dataset."
+
+Question 11: Momentum Parameter Impact
+
+"The momentum parameter analysis showed that momentum alone cannot compensate for inappropriate learning rates. Both SGD (momentum=0) and SGD+Momentum (momentum=0.9) failed identically, indicating that the fundamental issue was the fixed learning rate being too high.
+Momentum's role is to accelerate convergence in the right direction, but it requires a properly tuned learning rate to be effective. When the learning rate is too high, momentum actually worsens the instability by amplifying gradient oscillations."
 
 
