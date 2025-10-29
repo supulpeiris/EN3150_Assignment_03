@@ -221,3 +221,109 @@ Question 11: Momentum Parameter Impact
 Momentum's role is to accelerate convergence in the right direction, but it requires a properly tuned learning rate to be effective. When the learning rate is too high, momentum actually worsens the instability by amplifying gradient oscillations."
 
 
+
+
+Question 9: How do you select the learning rate?
+Comprehensive Answer with Experimental Evidence:
+"We employed a systematic, data-driven approach to learning rate selection through experimental evaluation of multiple learning rates, which revealed critical insights about our specific Jute Pest classification task."
+
+1. Initial Approach: Established Defaults
+# Started with well-established defaults for each optimizer
+Adam: learning_rate = 0.001 
+SGD: learning_rate = 0.01    
+Rationale: Begin with empirically validated defaults that work across diverse deep learning applications.
+
+2. Systematic Experimental Evaluation
+We tested multiple learning rates for both optimizers:
+
+For Adam Optimizer:
+learning_rates_tested = [0.001, 0.0005, 0.0001, 0.00005]
+
+Experimental Results:
+Learning Rate	    Training Acc	Validation Acc	Test Acc	    Status
+0.0005	             61.87%	        50.85%	      51.45%	    Optimal
+0.001	               63.06%	        48.18%	      17.68%	   Overfitting
+0.0001	             10.49%	        17.19%	                  Too Slow
+0.00005	             10.48%	        17.19%	                  Too Slow
+
+For SGD Optimizer:
+python
+learning_rates_tested = [0.1, 0.01, 0.001, 0.0001]
+Experimental Results:
+
+Learning Rate	  Training Acc	  Validation Acc	    Status
+0.001	            20.91%	        32.45%	        Optimal
+0.0001	          10.43%	        15.50%	        Too Slow
+0.01,0.1	        5.31%	          7.26%	       Exploding Gradients
+
+3. Key Selection Criteria Used:
+
+A. Validation Performance
+  Primary metric: Validation accuracy (generalization capability)
+  Adam LR=0.0005: Achieved 50.85% validation accuracy
+  SGD LR=0.001: Achieved 32.45% validation accuracy
+
+B. Overfitting Control
+  Original (LR=0.001): 45.38% train-test gap (severe overfitting)
+  Optimized (LR=0.0005): 10.42% train-test gap (well-balanced)
+  Lower learning rate significantly reduced overfitting
+
+C. Training Stability
+  High learning rates: Caused NaN losses (exploding gradients)
+  Optimal range: Stable convergence without oscillations
+  Too low rates: Slow convergence, underfitting
+
+4. Optimal Learning Rates Identified:
+
+# Final selected learning rates based on experimental evidence
+OPTIMAL_LEARNING_RATES = {
+    'Adam': 0.0005,    # Best overall: 51.45% test accuracy
+    'SGD': 0.001       # Best for SGD: 32.45% validation accuracy
+}
+5. Dramatic Performance Improvement:
+  "Our systematic learning rate selection yielded dramatic results: tuning Adam's learning rate from 0.001 to 0.0005 improved test accuracy from 17.68% to 51.45% - a 33.77% absolute improvement. This transformation from random-guessing performance to meaningful classification underscores the critical importance of proper learning rate selection."
+
+6. Methodological Insights:
+  A. Learning Rate Affects Overfitting
+  Higher LR (0.001): Faster learning but severe overfitting
+  Optimal LR (0.0005): Balanced learning and generalization
+  Lower LR (0.0001): Insufficient learning, underfitting
+
+B. Optimizer-Specific Considerations
+  Adam: More robust to learning rate choices due to adaptive updates
+  SGD: Highly sensitive, requires precise tuning
+  Different optimizers have different optimal learning rate ranges
+
+C. Dataset-Specific Nature
+  Jute Pest dataset: 17 classes, 7,235 images
+  Optimal LR=0.0005 is specific to our data complexity and volume
+  Different datasets may require different optimal learning rates
+
+7. Advanced Techniques Considered:
+  "While we used systematic experimental evaluation, more advanced approaches like Learning Rate Range Test or Cyclical Learning Rates could provide finer optimization. However, our method proved highly effective, achieving a 3x improvement in test performance."
+
+8. Final Selection Justification:
+We selected Adam with learning_rate=0.0005 because:
+
+✅ Highest test accuracy: 51.45% (vs 17.68% with default)
+✅ Best generalization: Smallest train-test performance gap
+✅ Training stability: No exploding gradients or oscillations
+✅ Reasonable convergence: Achieved in 20 epochs
+✅ Empirical validation: Systematic testing across multiple values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
