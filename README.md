@@ -38,7 +38,7 @@ Experimental Verification:
   Training stability
   Convergence speed
 
-Question 9: How do you select the learning rate? [10 marks]
+How do you select the learning rate? [10 marks]
 Learning Rate Selection Strategy:
 1. Start with Well-Established Defaults
 python
@@ -214,11 +214,11 @@ C. Dataset-Specific Nature
 8. Final Selection Justification:
 We selected Adam with learning_rate=0.0005 because:
 
-✅ Highest test accuracy: 51.45% (vs 17.68% with default)
-✅ Best generalization: Smallest train-test performance gap
-✅ Training stability: No exploding gradients or oscillations
-✅ Reasonable convergence: Achieved in 20 epochs
-✅ Empirical validation: Systematic testing across multiple values
+Highest test accuracy: 51.45% (vs 17.68% with default)
+Best generalization: Smallest train-test performance gap
+Training stability: No exploding gradients or oscillations
+Reasonable convergence: Achieved in 20 epochs
+Empirical validation: Systematic testing across multiple values
 
 Compare the performance of your chosen optimizer with (a) standard Stochastic Gradient Descent (SGD), and (b) SGD with Momentum. Clearly state which performance metrics you used for the comparison, and explain why those metrics were chosen.
 
