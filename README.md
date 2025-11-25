@@ -77,16 +77,13 @@ B. Cyclical Learning Rates
       Training gets stuck in suboptimal solutions
       Many epochs needed for minimal improvement
 
-# Step 3: Monitor training behavior
-# - If converging too slowly → consider increasing LR
-# - If unstable → decrease LR
-# - Our case: 0.001 showed reasonable convergence
-8. Validation-Based Adjustment
+Validation-Based Adjustment
+
 Use validation loss as guide: If validation loss plateaus or increases, reduce learning rate
 
 Early stopping: Prevent overfitting while maintaining optimal learning dynamics
 
-9. Practical Considerations for This Assignment:
+Practical Considerations for This Assignment:
 Time constraints: Limited epochs (20) favor slightly higher learning rates
 Dataset size: 7,235 images can support stable training with 0.001
 Model complexity: Our 3-layer CNN is moderate, not extremely deep
@@ -122,22 +119,19 @@ Adam:
   Overfitting Gap:     0.0497
 
 
-Question 10: Optimizer Comparison
+Optimizer Comparison
 
 "The optimizer comparison revealed significant differences in performance:
 SGD and SGD+Momentum failed completely, achieving only 5.31% accuracy (essentially random guessing) and exhibiting NaN loss values indicating numerical instability due to exploding gradients.
 Adam optimizer performed substantially better, achieving 29.18% training accuracy and 24.21% validation accuracy with stable loss values.
 This demonstrates that Adam's adaptive learning rates are crucial for stable training of our CNN architecture on the Jute Pest dataset."
 
-Question 11: Momentum Parameter Impact
+Momentum Parameter Impact
 
 "The momentum parameter analysis showed that momentum alone cannot compensate for inappropriate learning rates. Both SGD (momentum=0) and SGD+Momentum (momentum=0.9) failed identically, indicating that the fundamental issue was the fixed learning rate being too high.
 Momentum's role is to accelerate convergence in the right direction, but it requires a properly tuned learning rate to be effective. When the learning rate is too high, momentum actually worsens the instability by amplifying gradient oscillations."
 
-
-
-
-Question 9: How do you select the learning rate?
+How do you select the learning rate?
 Comprehensive Answer with Experimental Evidence:
 "We employed a systematic, data-driven approach to learning rate selection through experimental evaluation of multiple learning rates, which revealed critical insights about our specific Jute Pest classification task."
 
@@ -226,8 +220,7 @@ We selected Adam with learning_rate=0.0005 because:
 ✅ Reasonable convergence: Achieved in 20 epochs
 ✅ Empirical validation: Systematic testing across multiple values
 
-
-10. Compare the performance of your chosen optimizer with (a) standard Stochastic Gradient Descent (SGD), and (b) SGD with Momentum. Clearly state which performance metrics you used for the comparison, and explain why those metrics were chosen.
+Compare the performance of your chosen optimizer with (a) standard Stochastic Gradient Descent (SGD), and (b) SGD with Momentum. Clearly state which performance metrics you used for the comparison, and explain why those metrics were chosen.
 
 metrics_explanation = """
 Performance Metrics Used for Optimizer Comparison:
